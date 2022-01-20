@@ -36,11 +36,11 @@ body {
   cursor: pointer;
 }
 
-.header-buttons{
+.header-buttons {
   display: flex;
 }
 
-.header-btn{
+.header-btn {
   width: 40px;
   border-radius: 20px;
   display: flex;
@@ -49,13 +49,13 @@ body {
   cursor: pointer;
 }
 
-.search{
+.search {
   background-color: #f6f6f6;
   border-bottom: 1px solid #eee;
   padding: 5px 15px;
 }
 
-.search-input{
+.search-input {
   background-color: #fff;
   height: 40px;
   border-radius: 20px;
@@ -64,12 +64,18 @@ body {
   padding: 0 10px;
 }
 
-.search-input input{
+.search-input input {
   flex: 1;
   border: 0;
   outline: 0;
   background-color: transparent;
   margin-left: 10px;
+}
+
+.chatlist {
+  flex: 1;
+  background-color: #fff;
+  overflow-y: auto;
 }
 
 .content-area {
