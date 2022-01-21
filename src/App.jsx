@@ -9,7 +9,20 @@ import SearchIcon from "@material-ui/icons/Search";
 import * as C from "./components";
 
 function App() {
-  const [chateList, setChateList] = useState([{}, {}, {}, {}]);
+  const [chateList, setChateList] = useState([
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+  ]);
 
   const handleChatList = () => {
     return chateList.map((item, key) => (

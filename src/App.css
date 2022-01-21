@@ -78,5 +78,15 @@ body {
   overflow-y: auto;
 }
 
+.chatlist::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.chatlist::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
 .content-area {
 }

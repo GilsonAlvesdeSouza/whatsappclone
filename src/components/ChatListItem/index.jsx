@@ -3,10 +3,7 @@ import "./style.css";
 function ChatListItem() {
   return (
     <div className="chatlistitem">
-      <img
-        src="https://www.w3schools.com/howto/img_avatar2.png"
-        alt="avatar"
-      />
+      <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="avatar" />
       <div className="chatlistitem-lines">
         <div className="chatlistitem-line">
           <div className="chatlistitem-name">Gilson Alves</div>
@@ -14,7 +11,11 @@ function ChatListItem() {
         </div>
         <div className="chatlistitem-line">
           <div className="chatlistitem-lastmsg">
-            <p>Opa, tudo bem?</p>
+            <p>
+              O Gerador de Texto Lorem Ipsum pode ser utilizado para você que
+              está desenvolvendo seu projeto e precisa de texto aleatório para
+              preencher os{" "}
+            </p>
           </div>
         </div>
       </div>
