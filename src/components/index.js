@@ -1,3 +1,5 @@
 import ChatListItem from "./ChatListItem";
+import ChatIntro from "./ChatIntro";
+import ChatWindow from "./ChatWindow";
 
-export{ChatListItem};
+export { ChatListItem, ChatIntro, ChatWindow };

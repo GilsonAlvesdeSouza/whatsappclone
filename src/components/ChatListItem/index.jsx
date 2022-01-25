@@ -1,8 +1,8 @@
 import "./style.css";
 
-function ChatListItem() {
+function ChatListItem({ onClick }) {
   return (
-    <div className="chatlistitem">
+    <div className="chatlistitem" onClick={onClick}>
       <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="avatar" />
       <div className="chatlistitem-lines">
         <div className="chatlistitem-line">

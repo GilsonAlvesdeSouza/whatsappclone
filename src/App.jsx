@@ -9,9 +9,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import * as C from "./components";
 
 function App() {
-  const [chateList, setChateList] = useState([
+  const [chatList, setChatList] = useState([
     {},
-    {},
+    {chatId: 1},
     {},
     {},
     {},
@@ -23,10 +23,14 @@ function App() {
     {},
     {},
   ]);
+  const [activeChat, setActiveChat] = useState({ chatId: 1 });
 
   const handleChatList = () => {
-    return chateList.map((item, key) => (
-      <C.ChatListItem key={`chateList${key}}`} />
+    return chatList.map((item, key) => (
+      <C.ChatListItem
+        key={`chateList${key}}`}
+        onClick={() => setActiveChat(item)}
+      />
     ));
   };
 
@@ -62,7 +66,10 @@ function App() {
         </div>
         <div className="chatlist">{handleChatList()}</div>
       </div>
-      <div className="content-area">bbbbbbb</div>
+      <div className="content-area">
+        {activeChat.chatId !== undefined && <C.ChatWindow />}
+        {activeChat.chatId === undefined && <C.ChatIntro />}
+      </div>
     </div>
   );
 }
