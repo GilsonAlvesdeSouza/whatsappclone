@@ -1,0 +1,58 @@
+.ChatWindow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chatWindow--header {
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatWindow--headerInfo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chatWindow--avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 15px;
+}
+
+.chatWindow--name {
+  font-size: 1.063rem;
+  color: #000;
+}
+
+.chatWindow--headerButtons {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+
+.chatWindow--btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chatWindow--btn :hover {
+  width: 38px;
+  height: 38px;
+}
+
+.chatWindow--body {
+}
+
+.chatWindow--footer {
+}

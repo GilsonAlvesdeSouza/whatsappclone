@@ -10,26 +10,31 @@ import * as C from "./components";
 
 function App() {
   const [chatList, setChatList] = useState([
-    {},
-    {chatId: 1},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    {
+      chatId: 1,
+      title: "Gilson Alves",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+      chatId: 2,
+      title: "Franciele",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+      chatId: 3,
+      title: "Yago",
+      image: "https://www.w3schools.com/howto/img_avatar.png",
+    },
   ]);
-  const [activeChat, setActiveChat] = useState({ chatId: 1 });
+  const [activeChat, setActiveChat] = useState({});
 
   const handleChatList = () => {
     return chatList.map((item, key) => (
       <C.ChatListItem
         key={`chateList${key}}`}
-        onClick={() => setActiveChat(item)}
+        data={item}
+        active={activeChat.chatId === chatList[key].chatId}
+        onClick={() => setActiveChat(chatList[key])}
       />
     ));
   };
