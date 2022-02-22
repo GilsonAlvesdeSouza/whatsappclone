@@ -1,24 +1,58 @@
 import { useState } from "react";
 import "./style.css";
-import EmojiPicker, {
-  SKIN_TONE_MEDIUM_DARK,
-  SKIN_TONE_LIGHT,
-} from "emoji-picker-react";
+import EmojiPicker from "emoji-picker-react";
 import SearchIcon from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
-import MicIcion from "@material-ui/icons/Mic";
+import MicIcon from "@material-ui/icons/Mic";
 
 function ChatWindow() {
-  const [openEmoji, setOpenEmoji] = useState(false);
+  let recognition = null;
+  let SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  const handleEmojiClick = () => {};
+  if (SpeechRecognition !== undefined) {
+    recognition = new SpeechRecognition();
+  }
+
+  const [openEmoji, setOpenEmoji] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [listening, setListening] = useState(false);
+
+  const handleEmojiClick = (e, emojiObject) => {
+    setMsg(msg + emojiObject.emoji);
+  };
 
   const handleClickEmoji = () => {
     setOpenEmoji(!openEmoji);
+  };
+
+  const handleMsg = (e) => {
+    setMsg(e.target.value);
+  };
+
+  const handleSendClick = () => {
+    setOpenEmoji(false);
+    setMsg("");
+  };
+
+  const handleMicClick = () => {
+    if (recognition !== null) {
+      recognition.onstart = () => {
+        setListening(true);
+      };
+      recognition.onend = () => {
+        setListening(false);
+      };
+      recognition.onresult = (e) => {
+        setMsg(e.results[0][0].transcript);
+      };
+
+      recognition.start();
+    }
   };
 
   return (
@@ -54,7 +88,6 @@ function ChatWindow() {
           disableSearchBar
           disableSkinTonePicker
           activeSkinTone
-          skinTone={(SKIN_TONE_MEDIUM_DARK, SKIN_TONE_LIGHT)}
         />
       </div>
       <div className="chatWindow--footer">
@@ -68,12 +101,22 @@ function ChatWindow() {
             className="chatWindow--input"
             type="text"
             placeholder="Digite uma mensagem"
+            onChange={handleMsg}
+            value={msg}
           />
         </div>
         <div className="chatWindow--pos">
-          <div className="chatWindow--btn">
-            <SendIcon style={{ color: "#919191" }} />
-          </div>
+          {msg === "" && (
+            <div className="chatWindow--btn" onClick={handleMicClick}>
+              <MicIcon style={{ color: listening ? "#123ece" : "#919191" }} />
+            </div>
+          )}
+
+          {msg !== "" && (
+            <div className="chatWindow--btn" onClick={handleSendClick}>
+              <SendIcon style={{ color: "#919191" }} />
+            </div>
+          )}
         </div>
       </div>
     </div>
