@@ -68,27 +68,41 @@
 
 .chatWindow--pre {
   display: flex;
-  margin: 0 15px
+  margin: 0 15px;
 }
 
 .chatWindow--inputArea {
   flex: 1;
 }
 
-.chatWindow--input{
-	width: 100%;
-	height: 40px;
-	border: 0;
-	outline: 0;
-	background-color: #fff;
-	border-radius: 20px;
-	font-size: 15px;
-	color: #4a4a4a;
-	padding: 0 15px;
-	
+.chatWindow--input {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  outline: 0;
+  background-color: #fff;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #4a4a4a;
+  padding: 0 15px;
 }
 
 .chatWindow--pos {
   display: flex;
-  margin: 0 15px
+  margin: 0 15px;
+}
+
+.chatWindow--emojiArea {
+  height: 200px;
+  overflow-y: hidden;
+  transition: all ease 0.4s;
+}
+
+aside.emoji-picker-react {
+  width: auto !important;
+  background: none !important;
+}
+
+.emoji-picker-react .emoji-group:before {
+  background: none !important;
 }
