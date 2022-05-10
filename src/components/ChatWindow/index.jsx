@@ -5,9 +5,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
+import { MessageItem } from "../index";
 
 function ChatWindow() {
   let recognition = null;
@@ -18,16 +18,17 @@ function ChatWindow() {
     recognition = new SpeechRecognition();
   }
 
-  const [openEmoji, setOpenEmoji] = useState(false);
+  const [emojiOpen, setEmojiOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [listening, setListening] = useState(false);
+  const [list, setList] = useState([{}, {}, {}]);
 
   const handleEmojiClick = (e, emojiObject) => {
     setMsg(msg + emojiObject.emoji);
   };
 
   const handleClickEmoji = () => {
-    setOpenEmoji(!openEmoji);
+    setEmojiOpen(!emojiOpen);
   };
 
   const handleMsg = (e) => {
@@ -35,7 +36,7 @@ function ChatWindow() {
   };
 
   const handleSendClick = () => {
-    setOpenEmoji(false);
+    setEmojiOpen(false);
     setMsg("");
   };
 
@@ -53,6 +54,12 @@ function ChatWindow() {
 
       recognition.start();
     }
+  };
+
+  const handleListMsg = () => {
+    return list.map((item, key) => (
+      <MessageItem key={`list${key}`} data={item} />
+    ));
   };
 
   return (
@@ -78,10 +85,10 @@ function ChatWindow() {
           </div>
         </div>
       </div>
-      <div className="chatWindow--body"></div>
+      <div className="chatWindow--body">{handleListMsg()}</div>
       <div
         className="chatWindow--emojiArea"
-        style={{ height: openEmoji ? "200px" : "0px" }}
+        style={{ height: emojiOpen ? "200px" : "0px" }}
       >
         <EmojiPicker
           onEmojiClick={handleEmojiClick}
@@ -93,7 +100,7 @@ function ChatWindow() {
       <div className="chatWindow--footer">
         <div className="chatWindow--pre">
           <div className="chatWindow--btn" onClick={handleClickEmoji}>
-            <InsertEmoticonIcon style={{ color: "#919191" }} />
+            <InsertEmoticonIcon style={{ color: emojiOpen ? "009688" : "#919191" }} />
           </div>
         </div>
         <div className="chatWindow--inputArea">
