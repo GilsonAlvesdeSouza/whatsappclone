@@ -100,7 +100,9 @@ function ChatWindow() {
       <div className="chatWindow--footer">
         <div className="chatWindow--pre">
           <div className="chatWindow--btn" onClick={handleClickEmoji}>
-            <InsertEmoticonIcon style={{ color: emojiOpen ? "009688" : "#919191" }} />
+            <InsertEmoticonIcon
+              style={{ color: emojiOpen ? "009688" : "#919191" }}
+            />
           </div>
         </div>
         <div className="chatWindow--inputArea">
@@ -121,7 +123,7 @@ function ChatWindow() {
 
           {msg !== "" && (
             <div className="chatWindow--btn" onClick={handleSendClick}>
-              <SendIcon style={{ color: "#919191" }} />
+              <SendIcon style={{ color: listening ? "#126ece" : "#919191" }} />
             </div>
           )}
         </div>
