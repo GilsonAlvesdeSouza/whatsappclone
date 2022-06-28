@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./style.css";
 import EmojiPicker from "emoji-picker-react";
 import SearchIcon from "@material-ui/icons/Search";
@@ -9,7 +9,9 @@ import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
 import { MessageItem } from "../index";
 
-function ChatWindow() {
+function ChatWindow({ user }) {
+  const body = useRef();
+
   let recognition = null;
   let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -21,7 +23,77 @@ function ChatWindow() {
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [listening, setListening] = useState(false);
-  const [list, setList] = useState([{}, {}, {}]);
+  const [list, setList] = useState([
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+    { author: 123, body: "Bom dia" },
+    { author: 1234, body: "Boa tarde " },
+    { author: 123, body: "tudo bem?" },
+  ]);
+
+  useEffect(() => {
+    if (body.current.scrollHeight > body.current.offsetHeight) {
+      body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight;
+    }
+  }, [list]);
 
   const handleEmojiClick = (e, emojiObject) => {
     setMsg(msg + emojiObject.emoji);
@@ -58,7 +130,7 @@ function ChatWindow() {
 
   const handleListMsg = () => {
     return list.map((item, key) => (
-      <MessageItem key={`list${key}`} data={item} />
+      <MessageItem key={`list${key}`} data={item} user={user.id} />
     ));
   };
 
@@ -85,7 +157,9 @@ function ChatWindow() {
           </div>
         </div>
       </div>
-      <div className="chatWindow--body">{handleListMsg()}</div>
+      <div ref={body} className="chatWindow--body">
+        {handleListMsg()}
+      </div>
       <div
         className="chatWindow--emojiArea"
         style={{ height: emojiOpen ? "200px" : "0px" }}

@@ -1,11 +1,22 @@
 import React from "react";
 import "./style.css";
 
-function MessageItem({ data }) {
+function MessageItem({ data, user }) {
+  console.log(data.author, user);
   return (
-    <div className="messageLine">
-      <div className="messageItem">
-        <div className="messageText">Gosto muito de estudar progamação principalmente react, conheço algumas técnicas muito legais para efeitos vísuais</div>
+    <div
+      className="messageLine"
+      style={{
+        justifyContent: user === data.author ? "flex-end" : "flex-start",
+      }}
+    >
+      <div
+        className="messageItem"
+        style={{
+          backgroundColor: user === data.author ? "#d9fdd3" : "",
+        }}
+      >
+        <div className="messageText">{data.body}</div>
         <div className="messageDate">19:00</div>
       </div>
     </div>

@@ -27,6 +27,11 @@ function App() {
     },
   ]);
   const [activeChat, setActiveChat] = useState({});
+  const [user, setUser] = useState({
+    id: 1234,
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Gilson Alves",
+  });
 
   const handleChatList = () => {
     return chatList.map((item, key) => (
@@ -39,20 +44,28 @@ function App() {
     ));
   };
 
+  const [showNewChat, setShowNewChat] = useState(false);
+
+  const handleChatOpen = () => {
+    setShowNewChat(true);
+  };
+  
   return (
     <div className="app-window">
       <div className="sidebar">
+        <C.NewChat
+          show={showNewChat}
+          setShow={setShowNewChat}
+          user={user}
+          chatList={chatList}
+        />
         <header>
-          <img
-            src="https://www.w3schools.com/howto/img_avatar.png"
-            alt="imagem"
-            className="header-avatar"
-          />
+          <img src={user.avatar} alt="imagem" className="header-avatar" />
           <div className="header-buttons">
             <div className="header-btn">
               <DonutLargeIcon style={{ color: "#919191" }} />
             </div>
-            <div className="header-btn">
+            <div className="header-btn" onClick={handleChatOpen}>
               <ChatIcon style={{ color: "#919191" }} />
             </div>
             <div className="header-btn">
@@ -72,7 +85,7 @@ function App() {
         <div className="chatlist">{handleChatList()}</div>
       </div>
       <div className="content-area">
-        {activeChat.chatId !== undefined && <C.ChatWindow />}
+        {activeChat.chatId !== undefined && <C.ChatWindow user={user} />}
         {activeChat.chatId === undefined && <C.ChatIntro />}
       </div>
     </div>
